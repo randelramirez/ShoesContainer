@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using ProductCatalogApi.Data;
+using ProductCatalogApi.Domain;
 
 namespace ProductCatalogApi.Controllers
 {
@@ -40,6 +41,41 @@ namespace ProductCatalogApi.Controllers
         {
             var items = await this.context.CatalogBrands.ToListAsync();
             return Ok(items);
+        }
+        
+        [HttpGet("items/{id:int}")]
+        public async Task<IActionResult> Get(int id)
+        {
+            if (id < 1)
+            {
+                return BadRequest();
+            }
+            
+            var item = await this.context.CatalogItems.FindAsync(id);
+            if (item is not null)
+            {
+                item.PictureUrl = item.PictureUrl.Replace("http://externalcatalogbaseurltobereplaced",
+                    this.options.ExternalCatalogBaseUrl);
+                return Ok(item);
+            }
+            
+            return NotFound();
+        }
+        
+        [HttpGet("items")]
+        public async Task<IActionResult> Get()
+        {
+           
+
+            var items =  this.context.CatalogItems;
+            if (items is not null)
+            {
+               var mapped = items.Select(item => new CatalogItem() { Id = item.Id, Description = item.Description, Name = item.Name}); //.PictureUrl = items.PictureUrl.Replace("http://externalcatalogbaseurltobereplaced",
+                  
+                return Ok(items);
+            }
+            
+            return NotFound();
         }
     }
 }
