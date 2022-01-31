@@ -14,7 +14,7 @@
         
         public string  PictureUrl { get; set; }
         
-        public int CatalogTypedId  { get; set; }
+        public int CatalogTypeId  { get; set; }
 
         public int CatalogBrandId  { get; set; }
 

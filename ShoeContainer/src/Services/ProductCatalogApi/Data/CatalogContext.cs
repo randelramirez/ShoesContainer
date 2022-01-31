@@ -47,28 +47,27 @@ namespace ProductCatalogApi.Data
             builder.ToTable("Catalog");
             builder.Property(c => c.Id)
                 .UseHiLo("catalog_hilo") //.ForSqlServerUseSequenceHiLo("catalog_hilo");
-                .IsRequired();
+                .IsRequired(true);
             builder.Property(c => c.Name)
-                .IsRequired()
+                .IsRequired(true)
                 .HasMaxLength(50);
             builder.Property(c => c.Price)
                 .IsRequired(true);
             builder.Property(c => c.PictureUrl)
                 .IsRequired(false);
-
             builder.HasOne(c => c.CatalogBrand)
                 .WithMany()
                 .HasForeignKey(c => c.CatalogBrandId);
 
             builder.HasOne(c => c.CatalogType)
                 .WithMany()
-                .HasForeignKey(c => c.CatalogTypedId);
+                .HasForeignKey(c => c.CatalogTypeId);
         }
 
         public DbSet<CatalogBrand> CatalogBrands { get; set; }
 
-        public DbSet<CatalogBrand> CatalogItems { get; set; }
+        public DbSet<CatalogItem> CatalogItems { get; set; }
 
-        public DbSet<CatalogBrand> CatalogTypes { get; set; }
+        public DbSet<CatalogType> CatalogTypes { get; set; }
     }
 }

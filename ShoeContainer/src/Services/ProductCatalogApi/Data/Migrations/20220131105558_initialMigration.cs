@@ -52,7 +52,7 @@ namespace ProductCatalogApi.Data.Migrations
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     PictureFileName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PictureUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CatalogTypedId = table.Column<int>(type: "int", nullable: false),
+                    CatalogTypeId = table.Column<int>(type: "int", nullable: false),
                     CatalogBrandId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -65,8 +65,8 @@ namespace ProductCatalogApi.Data.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Catalog_CatalogType_CatalogTypedId",
-                        column: x => x.CatalogTypedId,
+                        name: "FK_Catalog_CatalogType_CatalogTypeId",
+                        column: x => x.CatalogTypeId,
                         principalTable: "CatalogType",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -78,9 +78,9 @@ namespace ProductCatalogApi.Data.Migrations
                 column: "CatalogBrandId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Catalog_CatalogTypedId",
+                name: "IX_Catalog_CatalogTypeId",
                 table: "Catalog",
-                column: "CatalogTypedId");
+                column: "CatalogTypeId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

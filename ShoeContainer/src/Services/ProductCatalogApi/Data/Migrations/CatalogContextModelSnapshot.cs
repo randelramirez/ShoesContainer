@@ -56,7 +56,7 @@ namespace ProductCatalogApi.Data.Migrations
                     b.Property<int>("CatalogBrandId")
                         .HasColumnType("int");
 
-                    b.Property<int>("CatalogTypedId")
+                    b.Property<int>("CatalogTypeId")
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
@@ -80,7 +80,7 @@ namespace ProductCatalogApi.Data.Migrations
 
                     b.HasIndex("CatalogBrandId");
 
-                    b.HasIndex("CatalogTypedId");
+                    b.HasIndex("CatalogTypeId");
 
                     b.ToTable("Catalog");
                 });
@@ -113,7 +113,7 @@ namespace ProductCatalogApi.Data.Migrations
 
                     b.HasOne("ProductCatalogApi.Domain.CatalogType", "CatalogType")
                         .WithMany()
-                        .HasForeignKey("CatalogTypedId")
+                        .HasForeignKey("CatalogTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

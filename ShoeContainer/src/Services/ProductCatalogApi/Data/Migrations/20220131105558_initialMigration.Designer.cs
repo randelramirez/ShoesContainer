@@ -9,7 +9,7 @@ using ProductCatalogApi.Data;
 namespace ProductCatalogApi.Data.Migrations
 {
     [DbContext(typeof(CatalogContext))]
-    [Migration("20220131071048_initialMigration")]
+    [Migration("20220131105558_initialMigration")]
     partial class initialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -58,7 +58,7 @@ namespace ProductCatalogApi.Data.Migrations
                     b.Property<int>("CatalogBrandId")
                         .HasColumnType("int");
 
-                    b.Property<int>("CatalogTypedId")
+                    b.Property<int>("CatalogTypeId")
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
@@ -82,7 +82,7 @@ namespace ProductCatalogApi.Data.Migrations
 
                     b.HasIndex("CatalogBrandId");
 
-                    b.HasIndex("CatalogTypedId");
+                    b.HasIndex("CatalogTypeId");
 
                     b.ToTable("Catalog");
                 });
@@ -115,7 +115,7 @@ namespace ProductCatalogApi.Data.Migrations
 
                     b.HasOne("ProductCatalogApi.Domain.CatalogType", "CatalogType")
                         .WithMany()
-                        .HasForeignKey("CatalogTypedId")
+                        .HasForeignKey("CatalogTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
