@@ -60,7 +60,7 @@ namespace ProductCatalogApi.Data
                     Description = "Shoes for next century",
                     Name = "World Star",
                     Price = 199.5M,
-                    PictureUrl = "http://externalcatalogbaseurltobereplaced/api/images/shoes/1"
+                    PictureUrl = "http://externalcatalogbaseurltobereplaced/api/image/1"
                 },
                 new CatalogItem()
                 {
@@ -69,7 +69,7 @@ namespace ProductCatalogApi.Data
                     Description = "will make you world champions",
                     Name = "White Line",
                     Price = 88.50M,
-                    PictureUrl = "http://externalcatalogbaseurltobereplaced/api/images/shoes/2"
+                    PictureUrl = "http://externalcatalogbaseurltobereplaced/api/image/2"
                 },
                 new CatalogItem()
                 {
@@ -78,7 +78,7 @@ namespace ProductCatalogApi.Data
                     Description = "You have already won gold medal",
                     Name = "Prism White Shoes",
                     Price = 129,
-                    PictureUrl = "http://externalcatalogbaseurltobereplaced/api/images/shoes/3"
+                    PictureUrl = "http://externalcatalogbaseurltobereplaced/api/image/3"
                 },
                 new CatalogItem()
                 {
@@ -87,7 +87,7 @@ namespace ProductCatalogApi.Data
                     Description = "Olympic runner",
                     Name = "Foundation Hitech",
                     Price = 12,
-                    PictureUrl = "http://externalcatalogbaseurltobereplaced/api/images/shoes/4"
+                    PictureUrl = "http://externalcatalogbaseurltobereplaced/api/image/4"
                 },
                 new CatalogItem()
                 {
@@ -96,7 +96,7 @@ namespace ProductCatalogApi.Data
                     Description = "Roslyn Red Sheet",
                     Name = "Roslyn White",
                     Price = 188.5M,
-                    PictureUrl = "http://externalcatalogbaseurltobereplaced/api/images/shoes/5"
+                    PictureUrl = "http://externalcatalogbaseurltobereplaced/api/image/5"
                 },
                 new CatalogItem()
                 {
@@ -105,7 +105,7 @@ namespace ProductCatalogApi.Data
                     Description = "Lala Land",
                     Name = "Blue Star",
                     Price = 112,
-                    PictureUrl = "http://externalcatalogbaseurltobereplaced/api/images/shoes/6"
+                    PictureUrl = "http://externalcatalogbaseurltobereplaced/api/image/6"
                 },
                 new CatalogItem()
                 {
@@ -114,7 +114,7 @@ namespace ProductCatalogApi.Data
                     Description = "High in the sky",
                     Name = "Roslyn Green",
                     Price = 212,
-                    PictureUrl = "http://externalcatalogbaseurltobereplaced/api/images/shoes/7"
+                    PictureUrl = "http://externalcatalogbaseurltobereplaced/api/image/7"
                 },
                 new CatalogItem()
                 {
@@ -123,7 +123,7 @@ namespace ProductCatalogApi.Data
                     Description = "Light as carbon",
                     Name = "Deep Purple",
                     Price = 238.5M,
-                    PictureUrl = "http://externalcatalogbaseurltobereplaced/api/images/shoes/8"
+                    PictureUrl = "http://externalcatalogbaseurltobereplaced/api/image/8"
                 },
                 new CatalogItem()
                 {
@@ -132,7 +132,7 @@ namespace ProductCatalogApi.Data
                     Description = "High Jumper",
                     Name = "Addidas<White> Running",
                     Price = 129,
-                    PictureUrl = "http://externalcatalogbaseurltobereplaced/api/images/shoes/9"
+                    PictureUrl = "http://externalcatalogbaseurltobereplaced/api/image/9"
                 },
                 new CatalogItem()
                 {
@@ -141,7 +141,7 @@ namespace ProductCatalogApi.Data
                     Description = "Dunker",
                     Name = "Elequent",
                     Price = 12,
-                    PictureUrl = "http://externalcatalogbaseurltobereplaced/api/images/shoes/10"
+                    PictureUrl = "http://externalcatalogbaseurltobereplaced/api/image/10"
                 },
                 new CatalogItem()
                 {
@@ -150,7 +150,7 @@ namespace ProductCatalogApi.Data
                     Description = "All round",
                     Name = "Inredeible",
                     Price = 248.5M,
-                    PictureUrl = "http://externalcatalogbaseurltobereplaced/api/images/shoes/11"
+                    PictureUrl = "http://externalcatalogbaseurltobereplaced/api/image/11"
                 },
                 new CatalogItem()
                 {
@@ -159,7 +159,7 @@ namespace ProductCatalogApi.Data
                     Description = "Pricesless",
                     Name = "London Sky",
                     Price = 412,
-                    PictureUrl = "http://externalcatalogbaseurltobereplaced/api/images/shoes/12"
+                    PictureUrl = "http://externalcatalogbaseurltobereplaced/api/image/12"
                 },
                 new CatalogItem()
                 {
@@ -168,7 +168,7 @@ namespace ProductCatalogApi.Data
                     Description = "Tennis Star",
                     Name = "Elequent",
                     Price = 123,
-                    PictureUrl = "http://externalcatalogbaseurltobereplaced/api/images/shoes/13"
+                    PictureUrl = "http://externalcatalogbaseurltobereplaced/api/image/13"
                 },
                 new CatalogItem()
                 {
@@ -177,7 +177,7 @@ namespace ProductCatalogApi.Data
                     Description = "Wimbeldon",
                     Name = "London Star",
                     Price = 218.5M,
-                    PictureUrl = "http://externalcatalogbaseurltobereplaced/api/images/shoes/14"
+                    PictureUrl = "http://externalcatalogbaseurltobereplaced/api/image/14"
                 },
                 new CatalogItem()
                 {
@@ -186,7 +186,7 @@ namespace ProductCatalogApi.Data
                     Description = "Rolan Garros",
                     Name = "Paris Blues",
                     Price = 312,
-                    PictureUrl = "http://externalcatalogbaseurltobereplaced/api/images/shoes/15"
+                    PictureUrl = "http://externalcatalogbaseurltobereplaced/api/image/15"
                 }
             };
         }
