@@ -62,49 +62,31 @@ namespace ProductCatalogApi.Controllers
         }
 
         [HttpGet("items")]
-        public async Task<IActionResult> Get([FromQuery] int pageSize = 6,
+        public async Task<IActionResult> Get([FromQuery] string name,[FromQuery] int pageSize = 6,
             [FromQuery] int pageIndex = 0)
         {
             var totalIems = await this.context.CatalogItems.LongCountAsync();
+            var itemsQuery =  this.context.CatalogItems.AsQueryable();
+            if (string.IsNullOrEmpty(name) is not true)
+            {
+                itemsQuery = itemsQuery.Where(c => c.Name.StartsWith(name));
+            }
 
-            var itemsOnPage = await this.context.CatalogItems
-                .OrderBy(c => c.Name)
+            itemsQuery = itemsQuery.OrderBy(c => c.Name)
                 .Skip(pageSize * pageIndex)
-                .Take(pageSize)
-                .ToListAsync();
-
-            itemsOnPage.ForEach(item => item.PictureUrl = item.PictureUrl.Replace(
+                .Take(pageSize);
+            
+            var items = await itemsQuery.ToListAsync();
+            items.ForEach(item => item.PictureUrl = item.PictureUrl.Replace(
                 "http://externalcatalogbaseurltobereplaced",
                 this.options.ExternalCatalogBaseUrl));
 
             var model = new PaginatedItemsViewModel<CatalogItem>(pageIndex,
                 totalIems,
-                itemsOnPage,
+                items,
                 pageSize);
-
+            
             return Ok(model);
-
-            // var items = this.context.CatalogItems;
-            // if (items is not null)
-            // {
-            //     var mapped = items.Select(item => new CatalogItem()
-            //     {
-            //         Id = item.Id,
-            //         Description = item.Description,
-            //         Name = item.Name,
-            //         Price = item.Price,
-            //         PictureUrl = item.PictureUrl.Replace("http://externalcatalogbaseurltobereplaced",
-            //             this.options.ExternalCatalogBaseUrl),
-            //         PictureFileName = item.PictureFileName,
-            //         CatalogBrandId = item.CatalogBrandId,
-            //         CatalogTypeId = item.CatalogTypeId,
-            //
-            //     });
-            //
-            //     return Ok(await items.ToListAsync());
-            // }
-
-
         }
     }
 }
