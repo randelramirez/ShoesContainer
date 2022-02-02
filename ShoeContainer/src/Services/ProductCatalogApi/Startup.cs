@@ -1,3 +1,4 @@
+using System;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -19,6 +20,18 @@ namespace ProductCatalogApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.Configure<CatalogOptions>(Configuration.GetSection(CatalogOptions.Catalog));
+
+
+            //  string connectionString = 
+            var server = Configuration["DatabaseServer"];
+            var database = Configuration["DatabaseName"];
+            var user = Configuration["DatabaseUser"];
+            var password = Configuration["DatabaseUserPassword"];
+            var connectionString = $"Server={server};Database={database};User={user};Password={password};";
+            
+            // services.AddDbContext<CatalogContext>(options => options.UseSqlServer(Configuration["ConnectionString"]));
+            services.AddDbContext<CatalogContext>(options => options.UseSqlServer(connectionString));
+            
             services.AddDbContext<CatalogContext>(options =>
                 options.UseSqlServer(Configuration["ConnectionString"]));
             services.AddControllers();
