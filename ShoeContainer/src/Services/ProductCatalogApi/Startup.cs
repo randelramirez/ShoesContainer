@@ -20,8 +20,7 @@ namespace ProductCatalogApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.Configure<CatalogOptions>(Configuration.GetSection(CatalogOptions.Catalog));
-
-
+            
             //  string connectionString = 
             var server = Configuration["DatabaseServer"];
             var database = Configuration["DatabaseName"];
