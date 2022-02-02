@@ -9,7 +9,7 @@ using ProductCatalogApi.Data;
 namespace ProductCatalogApi.Data.Migrations
 {
     [DbContext(typeof(CatalogContext))]
-    [Migration("20220131105558_initialMigration")]
+    [Migration("20220202075035_initialMigration")]
     partial class initialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -17,7 +17,7 @@ namespace ProductCatalogApi.Data.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.4")
+                .HasAnnotation("ProductVersion", "5.0.13")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.HasSequence("catalog_brand_hilo")
