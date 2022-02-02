@@ -1,4 +1,6 @@
-﻿# https://hub.docker.com/_/microsoft-dotnet
+﻿# run in terminal docker build -t shoes/catalog .
+
+# https://hub.docker.com/_/microsoft-dotnet
 FROM mcr.microsoft.com/dotnet/sdk:5.0.404 AS build
 WORKDIR /code
 
