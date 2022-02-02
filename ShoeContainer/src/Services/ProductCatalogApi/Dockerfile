@@ -14,7 +14,7 @@ RUN dotnet publish -c release -o /app
 FROM mcr.microsoft.com/dotnet/aspnet:5.0.13
 WORKDIR /app
 COPY --from=build /app ./
-ENTRYPOINT ["dotnet", "ProductCatalogApi.dll"]
+ENTRYPOINT ["dotnet", "ProductCatalogApi.dll", "--server.urls", "http://*:5000"]
 
 
 

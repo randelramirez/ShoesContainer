@@ -9,11 +9,12 @@ services:
       build:
          context: .\src\Services\ProductCatalogApi
          dockerfile: Dockerfile
+      image: shoes/catalog
       environment:
          - DatabaseServer=mssqlserver
          - DatabaseName=CatalogDb
          - DatabaseUser=sa
-         - DatabasePassword=xxx
+         - DatabasePassword=ProductApi(!)
       container_name: catalogapi
       ports:
          - "5000:80"

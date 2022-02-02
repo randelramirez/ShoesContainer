@@ -12,12 +12,20 @@ namespace ProductCatalogApi
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration) => Configuration = configuration;
-        
+      
+        public Startup(IConfiguration configuration, IWebHostEnvironment environment)
+        {
+            Environment = environment;
+            Configuration = configuration;
+        }
+
         public IConfiguration Configuration { get; }
+        
+        public  IWebHostEnvironment Environment { get; }
+
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
+        public void ConfigureServices(IServiceCollection services )
         {
             services.Configure<CatalogOptions>(Configuration.GetSection(CatalogOptions.Catalog));
             
@@ -29,7 +37,15 @@ namespace ProductCatalogApi
             var connectionString = $"Server={server};Database={database};User={user};Password={password};";
             
             // services.AddDbContext<CatalogContext>(options => options.UseSqlServer(Configuration["ConnectionString"]));
-            services.AddDbContext<CatalogContext>(options => options.UseSqlServer(connectionString));
+          
+            if (Environment.IsDevelopment())
+            {
+                services.AddDbContext<CatalogContext>(options => options.UseSqlServer(Configuration["ConnectionString"]));
+            }
+            else
+            {
+                services.AddDbContext<CatalogContext>(options => options.UseSqlServer(connectionString));
+            }
             
             services.AddDbContext<CatalogContext>(options =>
                 options.UseSqlServer(Configuration["ConnectionString"]));
@@ -55,9 +71,14 @@ namespace ProductCatalogApi
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json",
                     "ProductCatalogApi v1"));
+                
+                // TO DO
+                // figure out how to run https localhost on docker and then move to main logic
+                app.UseHttpsRedirection();
             }
             
-            app.UseHttpsRedirection();
+           
+            // app.UseHttpsRedirection();
             app.UseRouting();
             app.UseAuthorization();
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
