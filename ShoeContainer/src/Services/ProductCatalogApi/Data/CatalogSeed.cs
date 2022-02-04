@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ namespace ProductCatalogApi.Data
         public static async Task SeedAsync(CatalogContext context)
         {
             await context.Database.MigrateAsync();
+            Console.WriteLine($"connection string: {context.Database.GetDbConnection()}");
             if (!context.CatalogBrands.Any())
             {
                 context.CatalogBrands.AddRange(GetPreconfiguredCatalogBrands());

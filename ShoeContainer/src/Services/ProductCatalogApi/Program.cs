@@ -1,6 +1,8 @@
 using System;
+using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
@@ -20,7 +22,7 @@ namespace ProductCatalogApi
 
             var isProduction = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == Environments.Production;
 
-            if (!isProduction)
+            if (isDevelopment || isProduction)
             {
                 using var scope = host.Services.CreateScope();
                 var services = scope.ServiceProvider;
@@ -28,6 +30,7 @@ namespace ProductCatalogApi
                 {
                     Console.WriteLine("Seeding data");
                     var context = services.GetRequiredService<CatalogContext>();
+                    Console.WriteLine($"connection string: {context.Database.GetDbConnection()}");
                     await CatalogSeed.SeedAsync(context);
                 }
                 catch (Exception e)
@@ -40,6 +43,8 @@ namespace ProductCatalogApi
                 }
             }
 
+            Console.WriteLine(
+                $" Environment.GetEnvironmentVariable(\"ASPNETCORE_URLS\"):{Environment.GetEnvironmentVariable("ASPNETCORE_URLS")}");
             Console.WriteLine($"isDevelopment: {isDevelopment.ToString()}");
             Console.WriteLine($"isProduction: {isProduction.ToString()}");
             Console.WriteLine(
@@ -49,6 +54,11 @@ namespace ProductCatalogApi
 
         private static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder => { webBuilder.UseStartup<Startup>(); });
+                .ConfigureWebHostDefaults(webBuilder =>
+                {
+                    webBuilder.UseStartup<Startup>();
+                    // webBuilder.UseKestrel(options => { options.Listen(IPAddress.Any, 5000); });
+                    webBuilder.UseKestrel().UseUrls(Environment.GetEnvironmentVariable("ASPNETCORE_URLS"));
+                });
     }
 }
