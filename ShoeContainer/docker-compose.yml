@@ -11,10 +11,7 @@ services:
          dockerfile: Dockerfile
       image: shoes/catalog
       environment:
-         - DatabaseServer=mssqlserver
-         - DatabaseName=CatalogDb
-         - DatabaseUser=sa
-         - DatabasePassword=ProductApi(!)
+         - DataBaseConnection=Data Source=mssqlserver;Initial Catalog=CatalogDb;User Id=sa;Password=ProductApi(!);MultipleActiveResultSets=True;
          - ASPNETCORE_URLS=http://+:5004
          - ASPNETCORE_ENVIRONMENT=Production
       container_name: catalogapi

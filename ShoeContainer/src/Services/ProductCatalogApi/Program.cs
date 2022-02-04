@@ -1,8 +1,7 @@
 using System;
-using System.Net;
+using System.Collections;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
@@ -21,7 +20,8 @@ namespace ProductCatalogApi
                                 Environments.Development;
 
             var isProduction = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == Environments.Production;
-
+            
+            
             if (isDevelopment || isProduction)
             {
                 using var scope = host.Services.CreateScope();
@@ -30,7 +30,6 @@ namespace ProductCatalogApi
                 {
                     Console.WriteLine("Seeding data");
                     var context = services.GetRequiredService<CatalogContext>();
-                    Console.WriteLine($"connection string: {context.Database.GetDbConnection()}");
                     await CatalogSeed.SeedAsync(context);
                 }
                 catch (Exception e)
@@ -42,13 +41,7 @@ namespace ProductCatalogApi
                     throw;
                 }
             }
-
-            Console.WriteLine(
-                $" Environment.GetEnvironmentVariable(\"ASPNETCORE_URLS\"):{Environment.GetEnvironmentVariable("ASPNETCORE_URLS")}");
-            Console.WriteLine($"isDevelopment: {isDevelopment.ToString()}");
-            Console.WriteLine($"isProduction: {isProduction.ToString()}");
-            Console.WriteLine(
-                $"Environment.GetEnvironmentVariable(\"ASPNETCORE_ENVIRONMENT\"):{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT")}");
+            
             await host.RunAsync();
         }
 
@@ -60,5 +53,14 @@ namespace ProductCatalogApi
                     // webBuilder.UseKestrel(options => { options.Listen(IPAddress.Any, 5000); });
                     webBuilder.UseKestrel().UseUrls(Environment.GetEnvironmentVariable("ASPNETCORE_URLS"));
                 });
+
+        private static void PrintEnvironmentVarialbes()
+        {
+            foreach (DictionaryEntry  variable in Environment.GetEnvironmentVariables())
+            {
+              
+                Console.WriteLine($"key={variable.Key}, value={variable.Value}");
+            }
+        }
     }
 }

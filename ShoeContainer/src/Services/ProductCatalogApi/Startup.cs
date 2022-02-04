@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -29,31 +30,13 @@ namespace ProductCatalogApi
         {
             services.Configure<CatalogOptions>(Configuration.GetSection(CatalogOptions.Catalog));
             
-            //  string connectionString = 
-            var server = Configuration["DatabaseServer"];
-            var database = Configuration["DatabaseName"];
-            var user = Configuration["DatabaseUser"];
-            var password = Configuration["DatabaseUserPassword"];
-            
-            // var server = System.Environment.GetEnvironmentVariable("DatabaseServer"); 
-            // var database = System.Environment.GetEnvironmentVariable("DatabaseName");
-            // var user = System.Environment.GetEnvironmentVariable("DatabaseUser");
-            // var password = System.Environment.GetEnvironmentVariable("DatabaseUserPassword");
-            var connectionString = $"Server={server};Database={database};User={user};Password={password};";
-            
-            Console.WriteLine($"connectionString  at startup: {connectionString}");
-            
-            // services.AddDbContext<CatalogContext>(options => options.UseSqlServer(Configuration["ConnectionString"]));
-          
             if (Environment.IsDevelopment())
             {
                 services.AddDbContext<CatalogContext>(options => options.UseSqlServer(Configuration["ConnectionString"]));
             }
             else
             {
-                // services.AddDbContext<CatalogContext>(options => options.UseSqlServer(connectionString));
-                // temporary, figure to get connection string from docker compose as variable
-                services.AddDbContext<CatalogContext>(options => options.UseSqlServer("Data Source=mssqlserver;Initial Catalog=CatalogDb;User Id=sa;Password=ProductApi(!);MultipleActiveResultSets=True;"));
+                services.AddDbContext<CatalogContext>(options => options.UseSqlServer(System.Environment.GetEnvironmentVariable("DataBaseConnection")));
             }
             
             // services.AddDbContext<CatalogContext>(options =>

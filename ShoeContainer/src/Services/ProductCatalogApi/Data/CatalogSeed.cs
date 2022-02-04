@@ -13,7 +13,6 @@ namespace ProductCatalogApi.Data
         public static async Task SeedAsync(CatalogContext context)
         {
             await context.Database.MigrateAsync();
-            Console.WriteLine($"connection string: {context.Database.GetDbConnection()}");
             if (!context.CatalogBrands.Any())
             {
                 context.CatalogBrands.AddRange(GetPreconfiguredCatalogBrands());
