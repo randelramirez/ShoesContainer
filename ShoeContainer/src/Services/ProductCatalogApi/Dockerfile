@@ -18,7 +18,7 @@ FROM mcr.microsoft.com/dotnet/aspnet:5.0.13
 WORKDIR /app
 COPY --from=build /app ./
 
-ENTRYPOINT ["dotnet", "ProductCatalogApi.dll", "--server.urls", "http://+:5004"]
+ENTRYPOINT ["dotnet", "ProductCatalogApi.dll"]
 
 
 
