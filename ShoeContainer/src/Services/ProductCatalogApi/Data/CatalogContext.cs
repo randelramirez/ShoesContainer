@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using ProductCatalogApi.Domain;
+using ShoesOnContainers.Services.ProductCatalogApi.Domain;
 
-namespace ProductCatalogApi.Data
+namespace ShoesOnContainers.Services.ProductCatalogApi.Data
 {
     public class CatalogContext : DbContext
     {

@@ -1,4 +1,4 @@
-﻿namespace ProductCatalogApi.Domain
+﻿namespace ShoesOnContainers.Services.ProductCatalogApi.Domain
 {
     public class CatalogBrand
     {

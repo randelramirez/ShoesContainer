@@ -1,4 +1,4 @@
-﻿namespace ProductCatalogApi
+﻿namespace ShoesOnContainers.Services.ProductCatalogApi
 {
     public class CatalogOptions
     {

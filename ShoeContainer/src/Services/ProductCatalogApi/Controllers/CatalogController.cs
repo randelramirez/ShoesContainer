@@ -3,11 +3,12 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
-using ProductCatalogApi.Data;
-using ProductCatalogApi.Domain;
-using ProductCatalogApi.ViewModels;
+using ProductCatalogApi;
+using ShoesOnContainers.Services.ProductCatalogApi.Data;
+using ShoesOnContainers.Services.ProductCatalogApi.Domain;
+using ShoesOnContainers.Services.ProductCatalogApi.ViewModels;
 
-namespace ProductCatalogApi.Controllers
+namespace ShoesOnContainers.Services.ProductCatalogApi.Controllers
 {
     [Produces("application/json")]
     [Route("api/[controller]")]

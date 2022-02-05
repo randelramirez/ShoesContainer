@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using ProductCatalogApi.Domain;
+using ShoesOnContainers.Services.ProductCatalogApi.Domain;
 
-namespace ProductCatalogApi.Data
+namespace ShoesOnContainers.Services.ProductCatalogApi.Data
 {
     public class CatalogSeed
     {

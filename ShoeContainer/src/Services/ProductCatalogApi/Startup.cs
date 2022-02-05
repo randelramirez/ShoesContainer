@@ -7,9 +7,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using ProductCatalogApi.Data;
+using ProductCatalogApi;
+using ShoesOnContainers.Services.ProductCatalogApi.Data;
 
-namespace ProductCatalogApi
+namespace ShoesOnContainers.Services.ProductCatalogApi
 {
     public class Startup
     {

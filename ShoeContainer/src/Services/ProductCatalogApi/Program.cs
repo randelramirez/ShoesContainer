@@ -5,9 +5,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using ProductCatalogApi.Data;
+using ShoesOnContainers.Services.ProductCatalogApi.Data;
 
-namespace ProductCatalogApi
+namespace ShoesOnContainers.Services.ProductCatalogApi
 {
     public class Program
     {
