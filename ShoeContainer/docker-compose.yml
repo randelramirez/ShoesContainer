@@ -12,10 +12,16 @@ services:
       image: shoes/catalog
       environment:
          - DataBaseConnection=Data Source=mssqlserver;Initial Catalog=CatalogDb;User Id=sa;Password=ProductApi(!);MultipleActiveResultSets=True;
-         - ASPNETCORE_URLS=http://+:5004
+         - ASPNETCORE_URLS=https://+:5001;http://+:5004
          - ASPNETCORE_ENVIRONMENT=Production
+         - ASPNETCORE_HTTPS_PORT=5001
+         - ASPNETCORE_Kestrel__Certificates__Default__Password=aspnetcoreapp
+         - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetcoreapp.pfx
+      volumes:
+         - ~/%USERPROFILE%/.aspnet/https:/https:ro
       container_name: catalogapi
       ports:
+         - "5001:5001"
          - "5004:5004"
       networks:
          - backend
@@ -27,7 +33,6 @@ services:
       image: "mcr.microsoft.com/mssql/server:2019-latest"
       ports:
          - "1445:1433"
-
       container_name: mssqlcontainer
       environment:
          - ACCEPT_EULA=Y

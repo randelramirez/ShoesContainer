@@ -63,14 +63,9 @@ namespace ProductCatalogApi
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json",
                     "ProductCatalogApi v1"));
-                
-                // TO DO
-                // figure out how to run https localhost on docker and then move to main logic
-                app.UseHttpsRedirection();
             }
-
-           
-            // app.UseHttpsRedirection();
+            
+            app.UseHttpsRedirection();
             app.UseRouting();
             app.UseAuthorization();
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
