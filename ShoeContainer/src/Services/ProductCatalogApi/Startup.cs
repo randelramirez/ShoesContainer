@@ -39,8 +39,6 @@ namespace ProductCatalogApi
                 services.AddDbContext<CatalogContext>(options => options.UseSqlServer(System.Environment.GetEnvironmentVariable("DataBaseConnection")));
             }
             
-            // services.AddDbContext<CatalogContext>(options =>
-            //     options.UseSqlServer(Configuration["ConnectionString"]));
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -60,10 +58,11 @@ namespace ProductCatalogApi
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json",
-                    "ProductCatalogApi v1"));
             }
+            
+            app.UseSwagger();
+            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json",
+                "ProductCatalogApi v1"));
             
             app.UseHttpsRedirection();
             app.UseRouting();
