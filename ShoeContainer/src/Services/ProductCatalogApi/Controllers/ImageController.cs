@@ -2,7 +2,7 @@ using System.IO;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ProductCatalogApi.Controllers
+namespace ShoesOnContainers.Services.ProductCatalogApi.Controllers
 {
     [Produces("application/json")]
     [Route("api/[controller]")]

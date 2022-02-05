@@ -21,7 +21,6 @@ namespace ShoesOnContainers.Services.ProductCatalogApi
 
             var isProduction = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == Environments.Production;
             
-            
             if (isDevelopment || isProduction)
             {
                 using var scope = host.Services.CreateScope();

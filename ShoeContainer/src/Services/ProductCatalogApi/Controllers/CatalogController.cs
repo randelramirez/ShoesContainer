@@ -1,9 +1,9 @@
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
-using ProductCatalogApi;
 using ShoesOnContainers.Services.ProductCatalogApi.Data;
 using ShoesOnContainers.Services.ProductCatalogApi.Domain;
 using ShoesOnContainers.Services.ProductCatalogApi.ViewModels;
@@ -61,8 +61,12 @@ namespace ShoesOnContainers.Services.ProductCatalogApi.Controllers
         }
 
         [HttpGet("items")]
-        public async Task<IActionResult> Get([FromQuery] string name, [FromQuery] int? catalogBrandId,
-            [FromQuery] int? catalogTypeId, [FromQuery] int pageSize = 6, [FromQuery] int pageIndex = 0)
+        [HttpGet("items/type/{catalogTypeId:int}")]
+        [HttpGet("items/brand/{catalogBrandId:int}")]
+        [HttpGet("items/type/{catalogTypeId:int}/brand/{catalogBrandId:int}")]
+        [HttpGet("items/brand/{catalogBrandId:int}/type/{catalogTypeId:int}")]
+        public async Task<IActionResult> Get([FromRoute] int? catalogBrandId, [FromRoute] int? catalogTypeId,
+            [FromQuery] string name, [FromQuery] int pageSize = 6, [FromQuery] int pageIndex = 0)
         {
             var totalIems = await this.context.CatalogItems.LongCountAsync();
             var itemsQuery = this.context.CatalogItems.AsQueryable();
@@ -88,11 +92,10 @@ namespace ShoesOnContainers.Services.ProductCatalogApi.Controllers
             var model = new PaginatedItemsViewModel<CatalogItem>(pageIndex, totalIems, items, pageSize);
             return Ok(model);
         }
-
-        // items2/type/{int}/brand{int}
-        [HttpGet("items2/type/{catalogTypeId?}/brand/{catalogBrandId?}")]
-        public async Task<IActionResult> Get2([FromRoute] int? catalogBrandId, [FromRoute] int? catalogTypeId,
-            [FromQuery] string name, [FromQuery] int pageSize = 6, [FromQuery] int pageIndex = 0)
+        
+        [HttpGet("items-oldapi")]
+        public async Task<IActionResult> GetOldApi([FromQuery] string name, [FromQuery] int? catalogBrandId,
+            [FromQuery] int? catalogTypeId, [FromQuery] int pageSize = 6, [FromQuery] int pageIndex = 0)
         {
             var totalIems = await this.context.CatalogItems.LongCountAsync();
             var itemsQuery = this.context.CatalogItems.AsQueryable();
@@ -177,6 +180,17 @@ namespace ShoesOnContainers.Services.ProductCatalogApi.Controllers
             this.context.CatalogItems.Remove(catalogItem);
             await this.context.SaveChangesAsync();
             return NoContent();
+        }
+        
+        private List<CatalogItem> ChangeUriPlaceholder(List<CatalogItem> items)
+        {
+            var baseUri = this.options.ExternalCatalogBaseUrl;
+
+            items.ForEach(x =>
+            {
+                x.PictureUrl = x.PictureUrl.Replace("http://externalcatalogbaseurltobereplaced", baseUri);
+            });
+            return items;
         }
     }
 }
