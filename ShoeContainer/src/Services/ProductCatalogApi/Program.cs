@@ -49,7 +49,6 @@ namespace ShoesOnContainers.Services.ProductCatalogApi
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
-                    // webBuilder.UseKestrel(options => { options.Listen(IPAddress.Any, 5000); });
                     webBuilder.UseKestrel().UseUrls(Environment.GetEnvironmentVariable("ASPNETCORE_URLS"));
                 });
 

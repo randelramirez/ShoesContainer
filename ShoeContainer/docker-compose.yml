@@ -5,6 +5,28 @@ networks:
    backend:
 
 services:
+   webmvc:
+      build:
+         context: .\src\Web\WebMvc
+         dockerfile: Dockerfile
+      environment:
+         - ASPNETCORE_ENVIRONMENT=Development
+         - CatalogUrl=https://host.docker.internal:5001
+         - ASPNETCORE_URLS=https://+:5002;http://+:5005
+         - ASPNETCORE_HTTPS_PORT=5001
+         - ASPNETCORE_Kestrel__Certificates__Default__Password=aspnetcoreapp2
+         - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetcoreapp2.pfx
+      volumes:
+         - ~/%USERPROFILE%/.aspnet/https:/https:ro
+      ports:
+        - "5002:5002"
+        - "5005:5005"
+      networks:
+         - backend
+         - frontend
+      depends_on:
+         - catalog
+      container_name: webfront
    catalog:
       build:
          context: .\src\Services\ProductCatalogApi
