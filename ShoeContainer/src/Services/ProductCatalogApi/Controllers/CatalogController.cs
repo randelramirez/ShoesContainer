@@ -1,8 +1,10 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using ShoesOnContainers.Services.ProductCatalogApi.Data;
 using ShoesOnContainers.Services.ProductCatalogApi.Domain;
@@ -52,8 +54,18 @@ namespace ShoesOnContainers.Services.ProductCatalogApi.Controllers
             var item = await this.context.CatalogItems.FindAsync(id);
             if (item is not null)
             {
+                
                 item.PictureUrl = item.PictureUrl.Replace("http://externalcatalogbaseurltobereplaced",
                     this.options.ExternalCatalogBaseUrl);
+
+                // override for docker container (https communication between two containers needs further setup)
+                if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == Environments.Production)
+                {
+                    // https://localhost:5004
+                    item.PictureUrl = item.PictureUrl.Replace("http://externalcatalogbaseurltobereplaced",
+                        "http://localhost:5004");
+                }
+                
                 return Ok(item);
             }
 

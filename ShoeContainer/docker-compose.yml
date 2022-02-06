@@ -10,17 +10,17 @@ services:
          context: .\src\Web\WebMvc
          dockerfile: Dockerfile
       environment:
-         - ASPNETCORE_ENVIRONMENT=Development
-         - CatalogUrl=https://host.docker.internal:5001
-         - ASPNETCORE_URLS=https://+:5002;http://+:5005
-         - ASPNETCORE_HTTPS_PORT=5001
+         - ASPNETCORE_ENVIRONMENT=Production
+         - CatalogUrl=https://host.docker.internal:5005
+         - ASPNETCORE_URLS=https://+:5010;http://+:5009
+         - ASPNETCORE_HTTPS_PORT=5010
          - ASPNETCORE_Kestrel__Certificates__Default__Password=aspnetcoreapp2
          - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetcoreapp2.pfx
       volumes:
          - ~/%USERPROFILE%/.aspnet/https:/https:ro
       ports:
-        - "5002:5002"
-        - "5005:5005"
+        - "5010:5010"
+        - "5009:5009"
       networks:
          - backend
          - frontend
@@ -34,16 +34,16 @@ services:
       image: shoes/catalog
       environment:
          - DataBaseConnection=Data Source=mssqlserver;Initial Catalog=CatalogDb;User Id=sa;Password=ProductApi(!);MultipleActiveResultSets=True;
-         - ASPNETCORE_URLS=https://+:5001;http://+:5004
+         - ASPNETCORE_URLS=https://+:5005;http://+:5004
          - ASPNETCORE_ENVIRONMENT=Production
-         - ASPNETCORE_HTTPS_PORT=5001
+         - ASPNETCORE_HTTPS_PORT=5005
          - ASPNETCORE_Kestrel__Certificates__Default__Password=aspnetcoreapp
          - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetcoreapp.pfx
       volumes:
          - ~/%USERPROFILE%/.aspnet/https:/https:ro
       container_name: catalogapi
       ports:
-         - "5001:5001"
+         - "5005:5005"
          - "5004:5004"
       networks:
          - backend

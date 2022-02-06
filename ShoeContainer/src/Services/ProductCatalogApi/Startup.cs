@@ -61,8 +61,15 @@ namespace ShoesOnContainers.Services.ProductCatalogApi
             app.UseSwagger();
             app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json",
                 "ProductCatalogApi v1"));
+
+            if (env.IsProduction())
+            {
+                // disable https communication between api and front-end, docker issues
+                // app.UseHttpsRedirection();
+            }
             
-            app.UseHttpsRedirection();
+            
+            
             app.UseRouting();
             app.UseAuthorization();
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });

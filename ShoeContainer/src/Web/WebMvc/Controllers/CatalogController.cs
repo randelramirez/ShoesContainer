@@ -10,20 +10,20 @@ namespace ShoesOnContainers.Web.WebMvc.Controllers
 {
     public class CatalogController : Controller
     {
-        private ICatalogService _catalogSvc;
+        private ICatalogService catalogService;
 
-        public CatalogController(ICatalogService catalogSvc) =>
-            _catalogSvc = catalogSvc;
+        public CatalogController(ICatalogService catalogService) =>
+            this.catalogService = catalogService;
 
         public async Task<IActionResult> Index(int? brandFilterApplied, int? typesFilterApplied, int? page)
         {
             int itemsPage=10 ;
-            var catalog = await _catalogSvc.GetCatalogItems(page ?? 0, itemsPage, brandFilterApplied, typesFilterApplied);
+            var catalog = await catalogService.GetCatalogItems(page ?? 0, itemsPage, brandFilterApplied, typesFilterApplied);
             var vm = new CatalogIndexViewModel()
             {
                 CatalogItems = catalog.Data,
-                Brands = await _catalogSvc.GetBrands(),
-                Types = await _catalogSvc.GetTypes(),
+                Brands = await catalogService.GetBrands(),
+                Types = await catalogService.GetTypes(),
                 BrandFilterApplied = brandFilterApplied ?? 0,
                 TypesFilterApplied = typesFilterApplied ?? 0,
                 PaginationInfo = new PaginationInfo()

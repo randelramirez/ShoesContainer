@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
@@ -16,19 +18,27 @@ namespace ShoesOnContainers.Web.WebMvc.Services
         private readonly IHttpClient apiClient;
         private readonly ILogger<CatalogService> logger;
 
-        private readonly string _remoteServiceBaseUrl;
+        private readonly string remoteServiceBaseUrl;
         public CatalogService(IOptionsSnapshot<AppSettings> settings, IHttpClient httpClient, ILogger<CatalogService> logger)
         {
             this.settings = settings;
             this.apiClient = httpClient;
             this.logger = logger;
 
-            _remoteServiceBaseUrl = $"{this.settings.Value.CatalogUrl}/api/catalog/";
+            remoteServiceBaseUrl = $"{this.settings.Value.CatalogUrl}/api/catalog/";
+            
+            // override for docker container (https communication between two containers needs further setup)
+            if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == Environments.Production)
+            {
+                remoteServiceBaseUrl = $"http://host.docker.internal:5004/api/catalog/";
+                Console.WriteLine($"remoteServiceBaseUrl: {remoteServiceBaseUrl}");
+            }
+            
         }
 
         public async Task<Catalog> GetCatalogItems(int page, int take, int? brand, int? type)
         {
-            var allcatalogItemsUri = ApiPaths.Catalog.GetAllCatalogItems(_remoteServiceBaseUrl, page, take, brand, type);
+            var allcatalogItemsUri = ApiPaths.Catalog.GetAllCatalogItems(remoteServiceBaseUrl, page, take, brand, type);
 
             var dataString = await apiClient.GetStringAsync(allcatalogItemsUri);
 
@@ -39,7 +49,7 @@ namespace ShoesOnContainers.Web.WebMvc.Services
 
         public async Task<IEnumerable<SelectListItem>> GetBrands()
         {
-            var getBrandsUri = ApiPaths.Catalog.GetAllBrands(_remoteServiceBaseUrl);
+            var getBrandsUri = ApiPaths.Catalog.GetAllBrands(remoteServiceBaseUrl);
 
             var dataString = await apiClient.GetStringAsync(getBrandsUri);
 
@@ -63,7 +73,7 @@ namespace ShoesOnContainers.Web.WebMvc.Services
 
         public async Task<IEnumerable<SelectListItem>> GetTypes()
         {
-            var getTypesUri = ApiPaths.Catalog.GetAllTypes(_remoteServiceBaseUrl);
+            var getTypesUri = ApiPaths.Catalog.GetAllTypes(remoteServiceBaseUrl);
 
             var dataString = await apiClient.GetStringAsync(getTypesUri);
 
