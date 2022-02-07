@@ -14,6 +14,6 @@ dotnet dev-certs https --trust
   cd C:\Dev\ShoeContainer\ShoeContainer
   docker-compose build
   docker-compose up mssqlserver
-  docker-compose up catalog
+  docker-compose up catalog webmvc
   
 
