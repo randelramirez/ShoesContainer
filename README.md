@@ -5,7 +5,8 @@
 To run the project on docker 
 
 
-1.) Install certificate for https running on localhost
+1.) Install certificate for https running on localhost <br>
+
 dotnet dev-certs https --clean <br>
 
 dotnet dev-certs https -ep %USERPROFILE%\.aspnet\https\aspnetcoreapp.pfx -p aspnetcoreapp <br>
