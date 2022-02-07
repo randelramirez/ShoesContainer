@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ShoesOnContainers.Web.WebMvc.Models;
 using ShoesOnContainers.Web.WebMvc.Services;
@@ -41,6 +42,7 @@ namespace ShoesOnContainers.Web.WebMvc.Controllers
             return View(vm);
         }
 
+        [Authorize]
         public IActionResult About()
         {
             ViewData["Message"] = "Your application description page.";

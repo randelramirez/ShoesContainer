@@ -25,4 +25,15 @@ dotnet dev-certs https --trust <br>
   
   docker-compose up catalog webmvc <br>
   
+  
+  
+  Creating the database for running locally <br>
+  
+  docker run -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=ProductApi(!)' -e 'MSSQL_PID=Developer' -p 1448:1433 --name productdatabase -h productdatabase -d mcr.microsoft.com/mssql/server:2019-latest <br>
+
+  docker run -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=IdentityApi(!)' -e 'MSSQL_PID=Developer' -p 1446:1433 --name identitydatabase -h identitydatabase -d mcr.microsoft.com/mssql/server:2019-latest <br>
+  
+
+  
+  
 
