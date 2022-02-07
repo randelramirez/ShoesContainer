@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using System;
+using ShoesOnContainers.Services.TokenServiceApi.Data;
 using TokenServiceApi.Data;
 
 namespace TokenServiceApi.Data.Migrations

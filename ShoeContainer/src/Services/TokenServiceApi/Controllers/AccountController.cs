@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ShoesOnContainers.Services.TokenServiceApi.Extensions;
+using ShoesOnContainers.Services.TokenServiceApi.Models;
 using ShoesOnContainers.Services.TokenServiceApi.Models.AccountViewModels;
 using ShoesOnContainers.Services.TokenServiceApi.Services;
 using TokenServiceApi.Models;

@@ -1,10 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace TokenServiceApi.Data
+namespace ShoesOnContainers.Services.TokenServiceApi.Data
 {
     public class ApplicationDbContext : IdentityDbContext
     {

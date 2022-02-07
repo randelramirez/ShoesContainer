@@ -5,6 +5,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using ShoesOnContainers.Services.TokenServiceApi.Data;
+using ShoesOnContainers.Services.TokenServiceApi.Models;
 using ShoesOnContainers.Services.TokenServiceApi.Services;
 using TokenServiceApi.Data;
 using TokenServiceApi.Models;
