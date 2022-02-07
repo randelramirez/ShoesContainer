@@ -1,4 +1,5 @@
 ﻿@model ShoesOnContainers.Services.TokenServiceApi.Models.ErrorViewModel
+
 @{
     ViewData["Title"] = "Error";
 }
@@ -11,6 +12,13 @@
     <p>
         <strong>Request ID:</strong> <code>@Model.RequestId</code>
     </p>
+
+    if (string.IsNullOrEmpty(ViewData["Error"].ToString()) is not  true)
+    {
+        <p>
+            <strong>@ViewData["Error"]</strong>
+        </p>
+    }
 }
 
 <h3>Development Mode</h3>

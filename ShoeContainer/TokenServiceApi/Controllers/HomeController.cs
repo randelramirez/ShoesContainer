@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
-using IdentityServer4.Quickstart.UI;
+
 using IdentityServer4.Services;
 using Microsoft.AspNetCore.Mvc;
-
+using ShoesOnContainers.Services.TokenServiceApi.Models;
 using TokenServiceApi.Models;
 
 namespace ShoesOnContainers.Services.TokenServiceApi.Controllers
@@ -46,9 +46,10 @@ namespace ShoesOnContainers.Services.TokenServiceApi.Controllers
             var message = await _interaction.GetErrorContextAsync(errorId);
             if (message != null)
             {
-                vm.Error = message;
+             
+                ViewData["Message"] = message;
             }
-        
+          
             return View("Error", vm);
         }
     }
