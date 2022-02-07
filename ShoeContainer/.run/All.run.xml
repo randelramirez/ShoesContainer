@@ -1,0 +1,8 @@
+﻿<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="All" type="CompoundRunConfigurationType">
+    <toRun name="ProductCatalogApi" type="LaunchSettings" />
+    <toRun name="TokenApi" type="LaunchSettings" />
+    <toRun name="WebMvc" type="LaunchSettings" />
+    <method v="2" />
+  </configuration>
+</component>
