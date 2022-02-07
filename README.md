@@ -1,5 +1,5 @@
 # ShoesContainer
-.NET 5 microservice
+.NET 5 microservice (Web Api + MVC for front-end)
 
 
 To run the project on docker 
