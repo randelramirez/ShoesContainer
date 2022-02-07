@@ -14,7 +14,6 @@ dotnet dev-certs https -ep %USERPROFILE%\.aspnet\https\aspnetcoreapp.pfx -p aspn
 dotnet dev-certs https --trust <br>
 
 <br>
-<br>
 
 2.) Setup docker images/containers 
   cd C:\Dev\ShoeContainer\ShoeContainer <br>
@@ -27,7 +26,7 @@ dotnet dev-certs https --trust <br>
   
   
   
-  Creating the database for running locally <br>
+  <u>Creating the database for running locally<u> <br>
   
   docker run -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=ProductApi(!)' -e 'MSSQL_PID=Developer' -p 1448:1433 --name productdatabase -h productdatabase -d mcr.microsoft.com/mssql/server:2019-latest <br>
 
