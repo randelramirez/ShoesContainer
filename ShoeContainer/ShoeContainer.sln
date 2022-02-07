@@ -1,25 +1,24 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32106.194
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{29C75684-A5D7-47EB-8DCC-65A94971B5D1}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{6F5E675D-0910-492F-A930-04B5FDD5B6C7}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{18E82E63-3010-4588-825E-437D23D7FD60}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductCatalogApi", "src\Services\ProductCatalogApi\ProductCatalogApi.csproj", "{C91848BF-FF6C-45C0-ABF7-24907CD312F2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductCatalogApi", "src\Services\ProductCatalogApi\ProductCatalogApi.csproj", "{C91848BF-FF6C-45C0-ABF7-24907CD312F2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebMvc", "src\Web\WebMvc\WebMvc.csproj", "{6D70D4BB-1F3F-41DE-92B7-2211C161B964}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebMvc", "src\Web\WebMvc\WebMvc.csproj", "{6D70D4BB-1F3F-41DE-92B7-2211C161B964}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokenServiceApi", "TokenServiceApi\TokenServiceApi.csproj", "{4E2233B3-36BE-47D2-A293-87B9C7EEE657}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{6F5E675D-0910-492F-A930-04B5FDD5B6C7} = {29C75684-A5D7-47EB-8DCC-65A94971B5D1}
-		{18E82E63-3010-4588-825E-437D23D7FD60} = {29C75684-A5D7-47EB-8DCC-65A94971B5D1}
-		{C91848BF-FF6C-45C0-ABF7-24907CD312F2} = {6F5E675D-0910-492F-A930-04B5FDD5B6C7}
-		{6D70D4BB-1F3F-41DE-92B7-2211C161B964} = {18E82E63-3010-4588-825E-437D23D7FD60}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{C91848BF-FF6C-45C0-ABF7-24907CD312F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -30,5 +29,22 @@ Global
 		{6D70D4BB-1F3F-41DE-92B7-2211C161B964}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6D70D4BB-1F3F-41DE-92B7-2211C161B964}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6D70D4BB-1F3F-41DE-92B7-2211C161B964}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E2233B3-36BE-47D2-A293-87B9C7EEE657}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E2233B3-36BE-47D2-A293-87B9C7EEE657}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E2233B3-36BE-47D2-A293-87B9C7EEE657}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E2233B3-36BE-47D2-A293-87B9C7EEE657}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{6F5E675D-0910-492F-A930-04B5FDD5B6C7} = {29C75684-A5D7-47EB-8DCC-65A94971B5D1}
+		{18E82E63-3010-4588-825E-437D23D7FD60} = {29C75684-A5D7-47EB-8DCC-65A94971B5D1}
+		{C91848BF-FF6C-45C0-ABF7-24907CD312F2} = {6F5E675D-0910-492F-A930-04B5FDD5B6C7}
+		{6D70D4BB-1F3F-41DE-92B7-2211C161B964} = {18E82E63-3010-4588-825E-437D23D7FD60}
+		{4E2233B3-36BE-47D2-A293-87B9C7EEE657} = {6F5E675D-0910-492F-A930-04B5FDD5B6C7}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7D464CC9-4BDB-4EB5-8822-FA649720FF55}
 	EndGlobalSection
 EndGlobal

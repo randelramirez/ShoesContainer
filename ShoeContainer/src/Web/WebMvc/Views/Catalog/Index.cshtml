@@ -79,7 +79,8 @@
             @foreach (var catalogItem in Model.CatalogItems)
             {
                 <div class="esh-catalog-item col-md-4">
-                    @Html.Partial("_product", catalogItem)
+                    @* @Html.Partial("_product", catalogItem) *@
+                    <partial name="_product" model="catalogItem"/>
                 </div>
             }
         </div>

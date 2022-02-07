@@ -1,4 +1,4 @@
-namespace ShoesOnContainers.Web.WebMvc.Models
+namespace ShoesOnContainers.Services.TokenServiceApi.Models
 {
     public class ErrorViewModel
     {
@@ -7,4 +7,3 @@ namespace ShoesOnContainers.Web.WebMvc.Models
         public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
     }
 }
-
