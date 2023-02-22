@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net7.0</TargetFramework>
     <UserSecretsId>aspnet-TokenServiceApi-EFAFA511-7C6B-4F52-9A6F-4980AD4A8338</UserSecretsId>
     <RootNamespace>ShoesOnContainers.Services.TokenServiceApi</RootNamespace>
   </PropertyGroup>
