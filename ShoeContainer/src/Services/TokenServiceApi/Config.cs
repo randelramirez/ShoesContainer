@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
-using IdentityServer4;
-using IdentityServer4.Models;
+using Duende.IdentityServer;
+using Duende.IdentityServer.Models;
 using Microsoft.Extensions.Configuration;
 
 namespace ShoesOnContainers.Services.TokenServiceApi
@@ -21,8 +21,23 @@ namespace ShoesOnContainers.Services.TokenServiceApi
         {
             return new List<ApiResource>
             {
-                 new ApiResource("basket", "Shopping Cart Api"),
-                 new ApiResource("orders", "Ordering Api"),
+                 new ApiResource("basket", "Shopping Cart Api")
+                 {
+                     Scopes = { "basket" }
+                 },
+                 new ApiResource("orders", "Ordering Api")
+                 {
+                     Scopes = { "orders" }
+                 },
+            };
+        }
+
+        public static IEnumerable<ApiScope> GetApiScopes()
+        {
+            return new List<ApiScope>
+            {
+                new ApiScope("basket", "Shopping Cart Api"),
+                new ApiScope("orders", "Ordering Api"),
             };
         }
 

@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-using IdentityServer4.Services;
+using Duende.IdentityServer.Services;
 using Microsoft.AspNetCore.Mvc;
 using ShoesOnContainers.Services.TokenServiceApi.Models;
 using TokenServiceApi.Models;

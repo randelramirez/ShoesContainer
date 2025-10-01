@@ -42,9 +42,8 @@ namespace ShoesOnContainers.Services.TokenServiceApi
             
             // configure identity server with in-memory stores, keys, clients and scopes
             services.AddIdentityServer()
-                .AddDeveloperSigningCredential()
-                .AddInMemoryPersistedGrants()
                 .AddInMemoryIdentityResources(Config.GetIdentityResources())
+                .AddInMemoryApiScopes(Config.GetApiScopes())
                 .AddInMemoryApiResources(Config.GetApiResources())
                 .AddInMemoryClients(Config.GetClients(Config.GetUrls(Configuration)))
                 .AddAspNetIdentity<ApplicationUser>();
@@ -68,7 +67,8 @@ namespace ShoesOnContainers.Services.TokenServiceApi
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            
+            app.UseIdentityServer();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
