@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using IdentityServer4.Quickstart.UI;
-using IdentityServer4.Services;
+using Duende.IdentityServer.Quickstart.UI;
+using Duende.IdentityServer.Services;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -33,6 +33,7 @@ namespace ShoesOnContainers.Services.TokenServiceApi.Controllers
             SignInManager<ApplicationUser> signInManager,
             IIdentityServerInteractionService interaction,
             IHttpContextAccessor httpContextAccessor,
+            IAuthenticationSchemeProvider schemeProvider,
             IEmailSender emailSender,
             ILogger<AccountController> logger)
         {
@@ -41,7 +42,7 @@ namespace ShoesOnContainers.Services.TokenServiceApi.Controllers
             _emailSender = emailSender;
             _logger = logger;
             _interaction = interaction;
-            _account = new AccountService(interaction, httpContextAccessor);
+            _account = new AccountService(interaction, httpContextAccessor, schemeProvider);
         }
 
         [TempData]
