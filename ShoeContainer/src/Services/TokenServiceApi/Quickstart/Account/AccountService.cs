@@ -3,30 +3,33 @@
 
 
 using IdentityModel;
-using IdentityServer4.Extensions;
-using IdentityServer4.Services;
-using IdentityServer4.Stores;
+using Duende.IdentityServer.Extensions;
+using Duende.IdentityServer.Services;
+using Duende.IdentityServer.Stores;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace IdentityServer4.Quickstart.UI
+namespace Duende.IdentityServer.Quickstart.UI
 {
     public class AccountService
     {
       
         private readonly IIdentityServerInteractionService _interaction;
         private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly IAuthenticationSchemeProvider _schemeProvider;
       
 
         public AccountService(
             IIdentityServerInteractionService interaction,
-            IHttpContextAccessor httpContextAccessor
+            IHttpContextAccessor httpContextAccessor,
+            IAuthenticationSchemeProvider schemeProvider
            )
         {
             _interaction = interaction;
             _httpContextAccessor = httpContextAccessor;
+            _schemeProvider = schemeProvider;
            
         }
 
@@ -131,9 +134,11 @@ namespace IdentityServer4.Quickstart.UI
             if (user?.Identity.IsAuthenticated == true)
             {
                 var idp = user.FindFirst(JwtClaimTypes.IdentityProvider)?.Value;
-                if (idp != null && idp != IdentityServer4.IdentityServerConstants.LocalIdentityProvider)
+                if (idp != null && idp != Duende.IdentityServer.IdentityServerConstants.LocalIdentityProvider)
                 {
-                    var providerSupportsSignout = await _httpContextAccessor.HttpContext.GetSchemeSupportsSignOutAsync(idp);
+                    // Check if the external provider supports sign out
+                    var schemes = await _schemeProvider.GetAllSchemesAsync();
+                    var providerSupportsSignout = schemes.Any(s => s.Name == idp && typeof(IAuthenticationSignOutHandler).IsAssignableFrom(s.HandlerType));
                     if (providerSupportsSignout)
                     {
                         if (vm.LogoutId == null)
